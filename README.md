@@ -8,6 +8,12 @@ This is a **live demo** of the [family-office-funds-dashboard-template](https://
 
 **Nothing on the live dashboard is real.** Fund names, managers, commitments, NAV, IRR — all fabricated. 46 made-up funds across four strategies (Seed, Early Stage, Multi-Stage, Growth) spanning vintages 2005–2024.
 
+### About the `ALPHA` and `BETA` entity pills
+
+The demo splits commitments across two fake legal vehicles labeled **ALPHA** and **BETA**. These represent the common family-office pattern of holding LP stakes through more than one entity — e.g. a family office and a private foundation, two different trusts, an LLC and a DAF, or an operating entity and an investment holding company. The dashboard's entity filter lets you see the portfolio through each vehicle's lens.
+
+In your own deployment of the [template](https://github.com/crb-kci/family-office-funds-dashboard-template), the entity values come from your sheet — you can use any labels you want (e.g. "Family Trust", "Foundation", "LLC"), or leave the column blank if you only invest through one entity.
+
 ## Live URL
 
 **https://funds-dashboard-demo-946978801446.us-central1.run.app**
