@@ -1040,8 +1040,14 @@
 </head>
 <body>
 
-<div id="demo-banner" style="background:#FEF3C7;border-bottom:1px solid #FCD34D;color:#78350F;padding:10px 32px;font-size:13px;text-align:center;font-family:system-ui,-apple-system,sans-serif;">
-  <strong style="font-weight:600">Demo data.</strong> All fund names, managers, commitments, NAV, and returns shown here are fabricated — nothing on this page is real.
+<div id="demo-banner" style="background:#FEF3C7;border-bottom:1px solid #FCD34D;color:#78350F;padding:14px 32px;font-size:13px;line-height:1.55;text-align:center;font-family:system-ui,-apple-system,sans-serif;">
+  <div><strong style="font-weight:600">Demo data.</strong> All fund names, managers, commitments, NAV, and returns shown here are fabricated — nothing on this page is real.</div>
+  <div style="margin-top:8px;max-width:920px;margin-left:auto;margin-right:auto;">
+    Here is the <a href="https://github.com/crb-kci/family-office-funds-dashboard-template" style="color:#78350F;text-decoration:underline;font-weight:600;">GitHub repository</a> that can help you create a dashboard like this yourself. This can be done by someone who is not very technical but has access to Claude and is willing to dive into Claude Code. The repository itself gives Claude instructions to guide you on how to get everything working yourself.
+  </div>
+  <div style="margin-top:6px;">
+    If you have any questions, see bugs, or want to make feature requests, feel free to reach out to <a href="mailto:chris@kaporcenter.org" style="color:#78350F;text-decoration:underline;">chris@kaporcenter.org</a>.
+  </div>
 </div>
 
 <header>
@@ -1520,80 +1526,6 @@ const THEMES = {
       '--chart-called':'#9B59E0','--chart-unfunded':'#D4BFFF',
       '--chart-contrib':'#DB2777','--chart-net':'#2D1260',
     },
-  },
-  '1983': {
-    label: '1983',
-    swatch: '#00AAAA',
-    vars: {
-      '--bg':'#000000','--card':'#0A0A0A',
-      '--ink':'#E8E8E8','--ink-2':'#D0D0D0','--muted':'#BBBBBB','--line':'#333333',
-      '--accent':'#00AAAA','--accent-2':'#0000AA',
-      '--pos':'#E8E8E8','--neg':'#E8E8E8','--warn':'#00AAAA',
-      '--highlight-bg':'#111111','--highlight-bd':'#00AAAA',
-      '--row-hover':'#0F0F0F','--row-line':'#222222',
-      '--font-ui':"'Courier New', Courier, monospace",
-      '--font-mono':"'Courier New', Courier, monospace",
-      '--font-serif':"'Courier New', Courier, monospace",
-      '--radius-card':'0','--radius-btn':'0',
-      '--chart-dist':'#E8E8E8','--chart-nav':'#00AAAA',
-      '--chart-called':'#555555','--chart-unfunded':'#222222',
-      '--chart-contrib':'#00AAAA','--chart-net':'#FFFFFF',
-    },
-    extraCss: `
-      header h1 { font-style: normal !important; font-weight: 700 !important; text-transform: uppercase; letter-spacing: 2px; }
-      .card, .kpi, .filter-banner, .theme-dropdown, .theme-btn,
-      .entity-btn, .filter-select, .search, .ms-btn, .ms-panel, .ms-search input,
-      .info-tip, .entity-pill {
-        border-radius: 0 !important;
-      }
-      .kpi .value { color: #FFFFFF !important; }
-      .pos { color: #E8E8E8 !important; }
-      .neg { color: #E8E8E8 !important; }
-      .entity-pill.BETA { background: #0A0A0A !important; color: #00AAAA !important; border: 1px solid #00AAAA; }
-      .entity-pill.ALPHA { background: #0A0A0A !important; color: #FFFFFF !important; border: 1px solid #FFFFFF; }
-      tfoot td { background: #0A0A0A !important; }
-      .filter-banner { background: #0A0A0A !important; color: #00AAAA !important; border-color: #00AAAA !important; }
-      .filter-banner-clear { background: #00AAAA !important; color: #000000 !important; }
-      .filter-select.filter-active, .search.filter-active, .ms-btn.filter-active {
-        background: #0A0A0A !important; color: #00AAAA !important; border-color: #00AAAA !important;
-      }
-      /* Ensure input placeholder + chevron stay readable on black */
-      .search::placeholder, .ms-search input::placeholder { color: #888888 !important; }
-      .filter-select, .ms-btn {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300AAAA' d='M2 4l4 4 4-4'/%3E%3C/svg%3E") !important;
-      }
-    `,
-  },
-  '1989': {
-    label: '1989',
-    swatch: '#000080',
-    vars: {
-      '--bg':'#C0C0C0','--card':'#FFFFFF',
-      '--ink':'#000000','--ink-2':'#222222','--muted':'#444444','--line':'#808080',
-      '--accent':'#000080','--accent-2':'#008080',
-      '--pos':'#008000','--neg':'#800000','--warn':'#808000',
-      '--highlight-bg':'#D4D0C8','--highlight-bd':'#808080',
-      '--row-hover':'#E0E0E0','--row-line':'#C0C0C0',
-      '--font-ui':"Arial, 'Helvetica Neue', sans-serif",
-      '--font-mono':"'Courier New', monospace",
-      '--font-serif':"Arial, 'Helvetica Neue', sans-serif",
-      '--radius-card':'0','--radius-btn':'0',
-      '--chart-dist':'#008000','--chart-nav':'#000080',
-      '--chart-called':'#808080','--chart-unfunded':'#D4D0C8',
-      '--chart-contrib':'#800000','--chart-net':'#000000',
-    },
-    extraCss: `
-      header h1 { font-style: normal !important; font-weight: 700 !important; }
-      .card, .kpi, .filter-banner, .theme-dropdown, .theme-btn,
-      .entity-btn, .filter-select, .search, .ms-btn, .ms-panel,
-      .info-tip, .entity-pill {
-        border-radius: 0 !important;
-      }
-      .theme-btn, .entity-btn, .filter-banner-clear {
-        box-shadow: inset -1px -1px #404040, inset 1px 1px #FFFFFF;
-      }
-      .tab.active { border-bottom-color: var(--accent) !important; }
-    `,
   },
 };
 
