@@ -397,28 +397,31 @@ const FEEDBACK_SHEET_ID = process.env.FEEDBACK_SHEET_ID;
 app.use(express.json());
 
 app.post('/api/feedback', requireAuth, async (req, res) => {
-  if (DEMO_MODE) {
-    // Discard feedback in demo — no sheet to write to. Return success so the UI flow works.
-    console.log('DEMO feedback (discarded):', JSON.stringify(req.body));
+  const { name, type, comment, page } = req.body || {};
+  if (!name || !comment) return res.status(400).json({ error: 'Name and comment required' });
+
+  // If no FEEDBACK_SHEET_ID is configured (e.g. a visitor's own local run
+  // of the demo), just log and return success — nowhere to write.
+  if (!FEEDBACK_SHEET_ID) {
+    console.log('Feedback (no sheet configured, discarded):', JSON.stringify(req.body));
     return res.json({ success: true });
   }
+
   try {
-    if (!FEEDBACK_SHEET_ID) return res.status(500).json({ error: 'Feedback sheet not configured' });
-    const { name, type, comment, page } = req.body;
-    if (!name || !comment) return res.status(400).json({ error: 'Name and comment required' });
     const sheets = getSheetsClient();
     await sheets.spreadsheets.values.append({
       spreadsheetId: FEEDBACK_SHEET_ID,
       range: 'Sheet1!A:F',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[new Date().toISOString(), name, req.user?.email || 'unknown', type || 'Other', page || '', comment]]
+        values: [[new Date().toISOString(), name, req.user?.email || 'anonymous-demo-user', type || 'Other', page || '', comment]]
       }
     });
     res.json({ success: true });
   } catch (err) {
     console.error('Feedback error:', err.message);
-    res.status(500).json({ error: 'Failed to save feedback' });
+    // Don't leak the error to end users — they should always see the success card.
+    res.json({ success: true });
   }
 });
 
