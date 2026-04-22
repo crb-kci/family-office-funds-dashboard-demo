@@ -10,7 +10,9 @@ This is a **live demo** of the [family-office-funds-dashboard-template](https://
 
 ## Live URL
 
-> _(deployed to Google Cloud Run — URL added after first deploy)_
+**https://funds-dashboard-demo-946978801446.us-central1.run.app**
+
+Public. No sign-in. Deployed to Google Cloud Run in an isolated GCP project (`funds-dashboard-demo`) — no connection to any real data source.
 
 ## Why this exists
 
