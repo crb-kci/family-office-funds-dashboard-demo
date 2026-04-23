@@ -1040,15 +1040,54 @@
 </head>
 <body>
 
-<div id="demo-banner" style="background:#FEF3C7;border-bottom:1px solid #FCD34D;color:#78350F;padding:14px 32px;font-size:13px;line-height:1.55;text-align:center;font-family:system-ui,-apple-system,sans-serif;">
-  <div><strong style="font-weight:600">Demo data.</strong> All fund names, managers, commitments, NAV, and returns shown here are fabricated — nothing on this page is real.</div>
-  <div style="margin-top:8px;max-width:920px;margin-left:auto;margin-right:auto;">
-    Here is the <a href="https://github.com/crb-kci/family-office-funds-dashboard-template" style="color:#78350F;text-decoration:underline;font-weight:600;">GitHub repository</a> that can help you create a dashboard like this yourself. This can be done by someone who is not very technical but has access to Claude and is willing to dive into Claude Code. The repository itself gives Claude instructions to guide you on how to get everything working yourself.
-  </div>
-  <div style="margin-top:6px;">
-    If you have any questions, see bugs, or want to make feature requests, feel free to reach out to <a href="mailto:chris@kaporcenter.org" style="color:#78350F;text-decoration:underline;">chris@kaporcenter.org</a>.
+<style>
+  #demo-banner { position: relative; }
+  #demo-banner .banner-toggle {
+    position: absolute; top: 8px; right: 12px;
+    background: transparent; border: 1px solid #D97706;
+    color: #78350F; font: inherit; font-size: 11px;
+    padding: 3px 10px; border-radius: 12px; cursor: pointer;
+    line-height: 1.3;
+  }
+  #demo-banner .banner-toggle:hover { background: #FDE68A; }
+  #demo-banner.collapsed .banner-details { display: none; }
+</style>
+<div id="demo-banner" style="background:#FEF3C7;border-bottom:1px solid #FCD34D;color:#78350F;padding:16px 32px;font-size:13px;line-height:1.55;font-family:system-ui,-apple-system,sans-serif;">
+  <button type="button" class="banner-toggle" id="banner-toggle" aria-expanded="true" aria-controls="banner-details">Collapse ▲</button>
+  <div style="max-width:920px;margin:0 auto;padding-right:80px;">
+    <div><strong style="font-weight:600">Welcome.</strong> This was a quickly-put-together demo to show how family offices can take structured data about venture fund investments and generate an interactive dashboard. <span class="banner-details"><strong style="font-weight:600">Data:</strong> all the data on this site is dummy data, it is not meant to represent real funds or performance.</span></div>
+    <div id="banner-details" class="banner-details">
+      <div style="margin-top:8px;"><strong style="font-weight:600">Want to do this for yourself?</strong> Depending on your level of comfort with Claude and Google Cloud, getting this up and running with your data will take 15 mins to 3 hours.</div>
+      <div style="margin-top:8px;">Here's what you want to do:</div>
+      <ol style="margin:6px 0 0 0;padding-left:22px;text-align:left;">
+        <li style="margin-bottom:4px;">Skim the <a href="https://github.com/crb-kci/family-office-funds-dashboard-template" style="color:#78350F;text-decoration:underline;font-weight:600;">git repository here</a> — there is a Read Me file that will give you an idea of the dashboard and some of its technical components. You do not need to understand everything on the Read Me, but it does answer questions you'll have.</li>
+        <li style="margin-bottom:4px;">Then, head to Claude Code.</li>
+        <li>Tell Claude Code: <em>I want to build a dashboard that shows investment performance of my venture fund investments. I want to use the git repository here. Review that repository carefully. First, explain to me how my data will be secure if I use that repository. Once we've discussed data security, walk me through how I can get the dashboard going with my data in a secure fashion.</em></li>
+      </ol>
+      <div style="margin-top:10px;">
+        If you have any questions, see bugs, or want to make feature requests, feel free to reach out to <a href="mailto:chris@kaporcenter.org" style="color:#78350F;text-decoration:underline;">chris@kaporcenter.org</a>.
+      </div>
+    </div>
   </div>
 </div>
+<script>
+  (function() {
+    var banner = document.getElementById('demo-banner');
+    var btn = document.getElementById('banner-toggle');
+    var KEY = 'demoBannerCollapsed';
+    function apply(collapsed) {
+      banner.classList.toggle('collapsed', collapsed);
+      btn.setAttribute('aria-expanded', String(!collapsed));
+      btn.textContent = collapsed ? 'Expand ▼' : 'Collapse ▲';
+    }
+    apply(localStorage.getItem(KEY) === '1');
+    btn.addEventListener('click', function() {
+      var next = !banner.classList.contains('collapsed');
+      apply(next);
+      localStorage.setItem(KEY, next ? '1' : '0');
+    });
+  })();
+</script>
 
 <header>
   <a href="/portfolio" class="home-link" id="home-link">
